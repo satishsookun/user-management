@@ -1,0 +1,11 @@
+.filter {
+
+  &__title {
+    font-size: 16px;
+    padding: 30px 0 10px 0;
+    font-family: $font-primary-bold;
+  }
+  &__type {
+    background-color: $primary-color;
+  }
+}
