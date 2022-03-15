@@ -1,0 +1,21 @@
+.mat-option.mat-active {
+  background: rgba($secondary-color,.04);
+  color: $primary-color;
+}
+
+.mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
+  background: rgba($secondary-color,.04);
+  color: $primary-color;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+  background-color: $primary-color;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba($secondary-color, .04);
+}
+
+.mat-form-field-appearance-fill:not(.mat-form-field-disabled) .mat-form-field-flex:hover~.mat-form-field-underline .mat-form-field-ripple {
+  transition: background-color 300ms cubic-bezier($secondary-color, 0.2);
+}

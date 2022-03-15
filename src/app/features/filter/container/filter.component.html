@@ -1,8 +1,20 @@
 <div class="filter">
   <div class="filter__title">Filter by: </div>
   <div class="filter__type">
-    <app-user-id
-      [usersIds]="usersIds"
-    ></app-user-id>
+    <form name="filterForm" [attr.formGroup]="filterForm" novalidate>
+      <app-user-department
+        [formGroup]="filterForm"
+        [departments]="departments"
+      ></app-user-department>
+      <app-user-occupations
+        [formGroup]="filterForm"
+        [occupations]="occupations">
+      </app-user-occupations>
+    </form>
+
+  </div>
+  <div class="filter__actions">
+    <app-filter-reset-button (emitResetFilter)="resetFilter()"></app-filter-reset-button>
+    <app-filter-search-button (emitSearch)="onSearch()"></app-filter-search-button>
   </div>
 </div>
