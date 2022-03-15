@@ -2,6 +2,7 @@
   position: relative;
   .mat-column-actions {
     position: absolute;
+    display: none;
   }
 }
 .mat-row {
@@ -18,14 +19,22 @@
       width: 44px;
       height: 48px;
       transition: $transition;
+      color: $secondary-color;
       &:hover {
-        color: $secondary-color;
+        color: $primary-color;
       }
     }
   }
 
 
   .mat-column-progress {
-    padding-right: 10%;
+    padding-right: 100px;
+    @media only screen and (max-width: 1200px) {
+      padding-right: 150px;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      padding-right: 130px;
+    }
   }
 }

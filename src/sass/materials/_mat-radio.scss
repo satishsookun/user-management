@@ -1,0 +1,35 @@
+/*==================================================================angular material - RADIO BUTTON =========================================================================*/
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: $secondary-color !important;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $secondary-color !important;
+}
+
+.mat-radio-button {
+  margin-right: 30px;
+}
+.mat-radio-label-content {
+  font-family: $font-primary-medium !important;
+  color: $secondary-font-color !important;
+}
+
+.mat-radio-button--white {
+  .mat-radio-inner-circle {
+    background-color: $white-color !important;
+  }
+
+  &.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $white-color !important
+  }
+
+  &.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $white-color !important;
+  }
+
+  .mat-radio-outer-circle {
+    border-color: $white-color !important;
+  }
+}
