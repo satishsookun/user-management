@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavComponent} from './container/nav.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import {NavComponent} from './container/nav.component';
   ],
   imports: [
     CommonModule,
+    MatIconModule,
   ],
   entryComponents: [
     NavComponent,

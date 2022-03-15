@@ -1,0 +1,31 @@
+.mat-header-row {
+  position: relative;
+  .mat-column-actions {
+    position: absolute;
+  }
+}
+.mat-row {
+  position: relative;
+  .mat-column-actions {
+    display: flex;
+    position: absolute;
+    border: 0;
+    right: 0;
+    top: 50%;
+    transition: $transition;
+    transform: translateY(-50%);
+    button {
+      width: 44px;
+      height: 48px;
+      transition: $transition;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+
+
+  .mat-column-progress {
+    padding-right: 10%;
+  }
+}

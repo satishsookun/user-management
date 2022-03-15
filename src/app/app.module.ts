@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HeaderModule} from './features/header/header.module';
 import {LogoModule} from './features/logo/logo.module';
 import {NavModule} from './features/nav/nav.module';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {NavModule} from './features/nav/nav.module';
     HeaderModule,
     LogoModule,
     NavModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

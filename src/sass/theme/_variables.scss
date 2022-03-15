@@ -1,13 +1,14 @@
 //THEME COLORS
-$primary-color: #0140B6;
-$secondary-color: #F7922E;
-$tertiary-color: #A1BFD9;
+$primary-color: #063362;
+$secondary-color: #5d82a9;
+$tertiary-color: #f7f8fb;
 
 // OTHER COLORS
 $white-color: #ffffff;
 $black-color: #000000;
 $blue-color: #0387DF;
 $light-grey: #DCDCDC;
+$light-grey-2: #eff0f3;
 $light-blue: #A1BFD9;
 $warning-color: #DD0000;
 
@@ -19,7 +20,7 @@ $font-primary-bold: 'nunito bold';
 $font-secondary-regular: 'kaushan';
 
 // THEME FONT COLORS
-$primary-font-color: #212F3E;
+$primary-font-color: $primary-color;
 $secondary-font-color: #556572;
 
 //FONT SIZE
@@ -34,3 +35,8 @@ $general-transition: all 300ms ease;
 
 //border
 $primary-border-radius: 4px;
+
+// body bg
+$body-bg-color: $light-grey-2;
+
+$transition: all 300ms ease-in-out;
