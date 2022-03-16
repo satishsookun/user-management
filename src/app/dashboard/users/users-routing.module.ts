@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 const routesUsers: Routes = [
   {
     path: '',
-    component: UsersComponent
+    component: UsersComponent,
   }
 ];
 

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {DEPARTMENTS, OCCUPATIONS} from '../../../contants/constants';
-import {DepartmentModel, OccupationModel} from '../../../models/user.model';
+import {DEPARTMENTS, JOB_TITLES} from '../../../contants/constants';
+import {DepartmentModel, JobTitleModel} from '../../../models/user.model';
 import {FilterFormService} from '../services/filter-form.service';
 import {FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
@@ -13,11 +13,11 @@ import {Subscription} from 'rxjs';
 export class FilterComponent implements OnInit, OnDestroy {
 
   public departments: DepartmentModel[] = DEPARTMENTS;
-  public occupations: OccupationModel[] = OCCUPATIONS;
+  public jobTitles: JobTitleModel[] = JOB_TITLES;
   public filterForm: FormGroup;
 
   private _formSubscription: Subscription;
-  private readonly occupationsOrigin: OccupationModel[] = OCCUPATIONS;
+  private readonly jobTitlesOrigin: JobTitleModel[] = JOB_TITLES;
 
   constructor(
     private _filterFormService: FilterFormService,
@@ -50,13 +50,13 @@ export class FilterComponent implements OnInit, OnDestroy {
   private onDepartmentValueChange(): void {
     this._formSubscription = this.filterForm.get('department').valueChanges.subscribe(
       (value) => {
-        this.occupations = this.filterOccupationListByDept(value);
-        this.filterForm.get('occupation').setValue('');
+        this.jobTitles = this.filterOccupationListByDept(value);
+        this.filterForm.get('jobTitle').setValue('');
       }
     )
   }
 
-  private filterOccupationListByDept(value: string): OccupationModel[] {
-    return [...this.occupationsOrigin.filter( (occupation: OccupationModel) => occupation.slug === value)];
+  private filterOccupationListByDept(value: string): JobTitleModel[] {
+    return [...this.jobTitlesOrigin.filter( (jobTitle: JobTitleModel) => jobTitle.slug === value)];
   }
 }

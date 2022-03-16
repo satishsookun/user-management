@@ -7,6 +7,10 @@
 
   &__table {
     width: 80%;
+
+    .mat-form-field {
+      width: 25%;
+    }
   }
   &__filter {
     margin-left: 50px;

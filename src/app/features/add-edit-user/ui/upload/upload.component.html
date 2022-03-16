@@ -1,0 +1,31 @@
+<!--Profile picture START-->
+<div id="dropFileForm" class="dropFileForm">
+  <div class="upload">
+    <label>
+      Upload profile
+    </label>
+
+    <div class="upload__wrapper mt-10" for="profileUpload">
+      <div class="upload__card">
+        <button class="upload__btn">
+          <mat-icon>add</mat-icon>
+          <input
+            type="file"
+            name="files[]"
+            [accept]="acceptedFormat"
+            class="fileInput upload__drag-zone"
+            id="profileUpload"
+            (change)="onAddFiles($event)"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="uploaded-img">
+    <mat-icon>person</mat-icon>
+    <div *ngIf="uploadedFileName">Uploaded File: {{uploadedFileName}}</div>
+  </div>
+</div>
+<p class="form-hint-error" *ngIf="!acceptedFormat">
+  Please enter the correct format. Ex: jpg, jpeg, png.
+</p>

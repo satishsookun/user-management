@@ -21,7 +21,7 @@ export class FilterFormService {
   public buildFilterForm(): void {
     this._filterFrom = this._fb.group({
       department: [],
-      occupation: [],
+      jobTitle: [],
     });
     this._filterFrom$.next(this._filterFrom);
   }

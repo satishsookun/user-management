@@ -1,8 +1,9 @@
 export interface UserModel {
-  id: string;
+  id: number;
   name: string;
   department: string;
-  occupation: string;
+  jobTitle: string;
   progress: string;
-  actions: string[];
+  profile?: string;
+  actions?: string[];
 }

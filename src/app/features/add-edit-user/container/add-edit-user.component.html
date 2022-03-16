@@ -1,0 +1,46 @@
+<div class="user">
+  <h2>{{title}}</h2>
+  <div class="user__content">
+    <form
+      [formGroup]="createUser">
+
+      <div class="user__section mr-25">
+        <app-user-profile
+          [createUser]="createUser"
+          [isSubmitted]="isSubmitted"
+          [departments]="departments"
+          [jobTitles]="jobTitles"></app-user-profile>
+      </div>
+
+      <div class="user__section dark-theme ml-25 mr-50">
+        <app-user-upload
+          [createUser]="createUser"
+          [isSubmitted]="isSubmitted"
+          [acceptedFormat]="acceptedFormat"
+          [uploadedFileName]="uploadedFileName"
+          (emitUploadFile)="addFiles($event)"
+        ></app-user-upload>
+      </div>
+
+
+    </form>
+
+    <div class="user__cta">
+      <button
+        *ngIf="!isEditInterface"
+        type="button"
+        class="btn btn--primary"
+        (click)="onCreate()">
+        Create
+      </button>
+      <button
+        *ngIf="isEditInterface"
+        type="button"
+        class="btn btn--primary"
+        (click)="onEdit()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+

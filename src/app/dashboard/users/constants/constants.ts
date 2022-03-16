@@ -1,1 +1,1 @@
-export const USER  = ['id', 'name', 'department', 'occupation', 'progress', 'actions'];
+export const USER  = ['id', 'name', 'department', 'jobTitle', 'progress', 'actions'];

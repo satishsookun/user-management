@@ -1,0 +1,53 @@
+<div [formGroup]="createUser">
+  <!--First Row-->
+  <div class="input-group dark-theme">
+
+    <!--Full name START-->
+    <div class="input-wrapper input-wrapper--fluid">
+      <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('name').invalid)}">
+        <mat-label>Full name</mat-label>
+        <input matInput formControlName="name" type="text" />
+      </mat-form-field>
+      <span class="error" *ngIf="isSubmitted && createUser.get('name').invalid">
+        Field required
+      </span>
+    </div>
+
+  </div>
+
+  <!--Second Row-->
+  <div class="input-group dark-theme">
+
+    <!--Department START-->
+    <div class="input-wrapper mr-15">
+      <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('department').invalid)}">
+        <mat-label>Your Department</mat-label>
+        <mat-select formControlName="department">
+          <mat-option *ngFor="let department of departments" [value]="department.slug">
+            {{department.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="error" *ngIf="isSubmitted && createUser.get('department').invalid">
+        Field required
+      </span>
+    </div>
+
+    <!--Title START-->
+    <div class="input-wrapper ml-15">
+      <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('jobTitle').invalid)}">
+        <mat-label>Your Title</mat-label>
+        <mat-select formControlName="jobTitle">
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.slug">
+            {{jobTitle.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span class="error" *ngIf="isSubmitted && createUser.get('jobTitle').invalid">
+        Field required
+      </span>
+    </div>
+
+  </div>
+
+</div>
