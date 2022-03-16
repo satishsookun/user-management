@@ -1,4 +1,4 @@
-import {DepartmentModel, OccupationModel} from '../models/user.model';
+import {DepartmentModel, JobTitleModel} from '../models/user.model';
 
 export const DEPARTMENTS: DepartmentModel[] = [
   {name: 'Information Technology', slug: 'it'},
@@ -7,7 +7,7 @@ export const DEPARTMENTS: DepartmentModel[] = [
   {name: 'Production', slug: 'prod'},
 ];
 
-export const OCCUPATIONS: OccupationModel[] = [
+export const JOB_TITLES: JobTitleModel[] = [
   {name: 'Front-End Developer', slug: 'it'},
   {name: 'Back-End Developer', slug: 'it'},
   {name: 'Web Designer', slug: 'it'},

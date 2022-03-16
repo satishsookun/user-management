@@ -28,10 +28,10 @@
           <td mat-cell *matCellDef="let row"> {{row.department}}</td>
         </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="occupation">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Occupation</th>
-          <td mat-cell *matCellDef="let row"> {{row.occupation}} </td>
+        <!-- jobTitle Column -->
+        <ng-container matColumnDef="jobTitle">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Job title</th>
+          <td mat-cell *matCellDef="let row"> {{row.jobTitle}} </td>
         </ng-container>
 
         <!-- Progress Column -->
@@ -47,7 +47,7 @@
             <button (click)="deleteUser(row.id)">
               <mat-icon>delete</mat-icon>
             </button>
-            <button (click)="createUser(row.id)">
+            <button (click)="editUser(row.id)">
               <mat-icon>edit_user</mat-icon>
             </button>
             <button (click)="viewProfile(row.id)">
@@ -61,7 +61,7 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">No data matching the search "{{input.value}}"</td>
+          <td class="mat-cell" colspan="6">No data matching the search "{{input.value}}"</td>
         </tr>
       </table>
 

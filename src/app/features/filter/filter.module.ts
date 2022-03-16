@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {FilterComponent} from './container/filter.component';
 import {MatSelectModule} from '@angular/material/select';
 import {DepartmentComponent} from './ui/department/department.component';
-import {OccupationComponent} from './ui/occupation/occupation.component';
+import {JobTitleComponent} from './ui/job-title/job-title.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {ResetComponent} from './ui/actions/reset.component';
 import {SearchComponent} from './ui/actions/search.component';
@@ -14,7 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   declarations: [
     FilterComponent,
     DepartmentComponent,
-    OccupationComponent,
+    JobTitleComponent,
     ResetComponent,
     SearchComponent,
   ],

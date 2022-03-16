@@ -1,44 +1,22 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {USER} from '../constants/constants';
 import {UserModel} from '../models/user.model';
 
-
-/** Constants used to fill up our data base. */
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
+import { BreadcrumbService } from 'xng-breadcrumb';
+import {UsersStore} from '../../../services/users-store';
+import {UsersModel} from '../store/actions';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -46,30 +24,47 @@ const NAMES: string[] = [
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class UsersComponent implements AfterViewInit {
+export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public displayedColumns: string[];
   public dataSource: MatTableDataSource<UserModel>;
+  public userList: UserModel[] = [];
+
+  private _userStoreSubscription: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(
+    private _breadcrumbService: BreadcrumbService,
+    private _usersStore: UsersStore,
+  ) {
     this.paginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
     this.sort = new MatSort();
     this.displayedColumns = USER;
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  }
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  ngOnInit(): void {
+    this._breadcrumbService.set('@dashboard', 'Dashboard');
+    this.initUserStore();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
 
-    console.log(typeof (this.paginator));
+  ngOnDestroy(): void {
+    if (this._userStoreSubscription) this._userStoreSubscription.unsubscribe();
+  }
+
+  private initUserStore(): void {
+    this._userStoreSubscription = this._usersStore.usersStore$().subscribe( (userStore: UsersModel) => {
+      console.log(userStore, 'USERS from STORE');
+      this.userList = userStore.users;
+      // Assign the data to the data source for the table to render
+      this.dataSource = new MatTableDataSource(this.userList);
+    });
   }
 
   applyFilter(event: Event) {
@@ -85,30 +80,11 @@ export class UsersComponent implements AfterViewInit {
     console.log(row, 'delete user')
   }
 
-  createUser(row: any) {
-    
+  editUser(row: any) {
+    console.log(row, 'Edit user')
   }
 
   viewProfile(row: any) {
-    
+    console.log(row, 'view user pro')
   }
-}
-
-/** Builds and returns a new User. */
-function createNewUser(id: number): UserModel {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-  const occupation = 'Front-end Developer';
-
-  return {
-    id: id.toString(),
-    name: name,
-    department: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-    occupation: occupation,
-    progress: Math.round(Math.random() * 100).toString(),
-    actions: ['delete', 'create', 'profile']
-  };
 }

@@ -4,7 +4,12 @@ export interface DepartmentModel {
   slug: string;
 }
 
-export interface OccupationModel {
+export interface JobTitleModel {
   name: string;
   slug: string;
+}
+
+export interface CustomFileEvent extends Event {
+  target: HTMLInputElement & EventTarget;
+  dataTransfer: HTMLInputElement & EventTarget;
 }

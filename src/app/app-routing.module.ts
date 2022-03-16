@@ -5,14 +5,12 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./dashboard/users/users.module').then(m => m.UsersModule),
+    data: {breadcrumb: {alias: 'dashboard' }}
   },
   {
-    path: 'create-user',
-    loadChildren: () => import('./dashboard/create-user/create-user.module').then(m => m.CreateUserModule),
-  },
-  {
-    path: 'id/edit-user',
-    loadChildren: () => import('./dashboard/create-user/create-user.module').then(m => m.CreateUserModule),
+    path: 'user',
+    loadChildren: () => import('./dashboard/user/user.module').then(m => m.UserModule),
+    data: {breadcrumb: { alias: 'user' }},
   },
   {
     path: '',

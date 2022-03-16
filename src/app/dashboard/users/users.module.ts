@@ -10,6 +10,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {FilterModule} from '../../features/filter/filter.module';
+import {StoreModule} from '@ngrx/store';
+import {usersReducer} from './store/reducers';
+import {UsersStore} from '../../services/users-store';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import {FilterModule} from '../../features/filter/filter.module';
     MatInputModule,
     MatIconModule,
 
-    FilterModule
+    FilterModule,
+
+    StoreModule.forFeature('usersFeature', usersReducer),
   ],
   entryComponents: [
     UsersComponent
@@ -34,6 +39,8 @@ import {FilterModule} from '../../features/filter/filter.module';
   exports: [
     UsersComponent
   ],
-  providers: []
+  providers: [
+    UsersStore
+  ]
 })
 export class UsersModule { }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HeaderComponent} from './container/header.component';
+import {UserBreadcrumbModule} from '../breadcrumb/user-breadcrumb.module';
+import {BreadcrumbModule} from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -8,6 +10,8 @@ import {HeaderComponent} from './container/header.component';
   ],
   imports: [
     CommonModule,
+    UserBreadcrumbModule,
+    BreadcrumbModule,
   ],
   entryComponents: [
     HeaderComponent
