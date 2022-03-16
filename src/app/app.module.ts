@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {StoreModule} from '@ngrx/store';
+import {RoutingService} from './services/routing.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {StoreModule} from '@ngrx/store';
     NavModule,
   ],
   providers: [
-    BreadcrumbService
+    BreadcrumbService,
+    RoutingService
   ],
   bootstrap: [AppComponent]
 })

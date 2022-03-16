@@ -1,5 +1,5 @@
 import { createAction, props} from '@ngrx/store';
-import {UserModel} from '../../models/user.model';
+import {UserModel} from '../../../dashboard/users/models/user.model';
 
 export enum UsersActionsEnum {
     editUser = '[Edit user] update localStorage with edited user',
@@ -10,5 +10,5 @@ export interface UsersModel {
   users: UserModel[];
 }
 
-export const editUserAction = createAction(UsersActionsEnum.editUser, props<{id: number; user: UserModel}>());
-export const addUserAction = createAction(UsersActionsEnum.addUser, props<{id: number; user: UserModel}>());
+export const editUserAction = createAction(UsersActionsEnum.editUser, props<UserModel>());
+export const addUserAction = createAction(UsersActionsEnum.addUser, props<UserModel>());

@@ -11,12 +11,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {FilterModule} from '../../features/filter/filter.module';
 import {StoreModule} from '@ngrx/store';
-import {usersReducer} from './store/reducers';
+import {usersReducer} from '../../store/users/reducers';
 import {UsersStore} from '../../services/users-store';
+import {UserActionsComponent} from './ui/actions/actions.component';
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UserActionsComponent,
   ],
   imports: [
     CommonModule,

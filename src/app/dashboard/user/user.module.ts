@@ -12,6 +12,9 @@ import {RoutingService} from '../../services/routing.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {AddEditUserModule} from '../../features/add-edit-user/add-edit-user.module';
+import {UsersStore} from '../../services/users-store';
+import {StoreModule} from '@ngrx/store';
+import {usersReducer} from '../../store/users/reducers';
 
 @NgModule({
   declarations: [
@@ -31,13 +34,15 @@ import {AddEditUserModule} from '../../features/add-edit-user/add-edit-user.modu
     MatSelectModule,
     MatIconModule,
 
+    StoreModule.forFeature('usersFeature', usersReducer),
+
     AddEditUserModule
   ],
   entryComponents: [
     UserComponent,
   ],
   providers: [
-    RoutingService,
+    UsersStore,
   ]
 })
 export class UserModule { }

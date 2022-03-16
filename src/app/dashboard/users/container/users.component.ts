@@ -15,8 +15,8 @@ import {UserModel} from '../models/user.model';
 
 import { BreadcrumbService } from 'xng-breadcrumb';
 import {UsersStore} from '../../../services/users-store';
-import {UsersModel} from '../store/actions';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -38,7 +38,9 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private _breadcrumbService: BreadcrumbService,
     private _usersStore: UsersStore,
+    private _router: Router,
   ) {
+    this.dataSource = new MatTableDataSource(this.userList);
     this.paginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
     this.sort = new MatSort();
     this.displayedColumns = USER;
@@ -59,11 +61,10 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private initUserStore(): void {
-    this._userStoreSubscription = this._usersStore.usersStore$().subscribe( (userStore: UsersModel) => {
-      console.log(userStore, 'USERS from STORE');
-      this.userList = userStore.users;
+    this._userStoreSubscription = this._usersStore.usersStore$().subscribe( (userStore: UserModel[]) => {
+      this.userList = userStore;
       // Assign the data to the data source for the table to render
-      this.dataSource = new MatTableDataSource(this.userList);
+      this.dataSource.data = this.userList;
     });
   }
 
@@ -76,15 +77,15 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  deleteUser(row: any) {
-    console.log(row, 'delete user')
+  deleteUser(userId: number) {
+    console.log(userId, 'delete user')
   }
 
-  editUser(row: any) {
-    console.log(row, 'Edit user')
+  editUser(userId: number) {
+    this._router.navigate([`user/${userId}/edit`]);
   }
 
-  viewProfile(row: any) {
-    console.log(row, 'view user pro')
+  viewUser(userId: number) {
+    this._router.navigate([`user/${userId}/view`]);
   }
 }

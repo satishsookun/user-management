@@ -1,11 +1,14 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {RoutingService} from '../../../services/routing.service';
 import {CustomFileEvent, DepartmentModel, JobTitleModel} from '../../../models/user.model';
 import {DEPARTMENTS, JOB_TITLES} from '../../../contants/constants';
 import {UserModel} from '../../../dashboard/users/models/user.model';
+import {UsersStore} from '../../../services/users-store';
+import {filter, map} from 'rxjs';
+import {BreadcrumbService} from 'xng-breadcrumb';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -22,16 +25,15 @@ export class AddEditUserComponent {
   public acceptedFormat = `.png, .jpg, .jpeg, .svg`;
   public hasUploadedFile: boolean;
 
-  private _users: UserModel[];
-
-
   public departments: DepartmentModel[] = DEPARTMENTS;
   public jobTitles: JobTitleModel[] = JOB_TITLES;
 
-
-  private _userId: string;
+  private _users: UserModel[];
+  private _userId: number;
   private _saveSubs: Subscription;
   private _formSubscription: Subscription;
+  private _userStoreSubscription: Subscription;
+  private _routingSubscription: Subscription;
   private readonly jobTitlesOrigin: JobTitleModel[] = JOB_TITLES;
 
 
@@ -40,23 +42,25 @@ export class AddEditUserComponent {
     private _router: Router,
     private _routingService: RoutingService,
     private _changeRef: ChangeDetectorRef,
+    private _usersStore: UsersStore,
+    private _breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
     this._users = [];
     this.setupForm();
-    this._routingService.currentUrl$().subscribe( (url) => {
-      const splitUrl = url.split('/');
-      this._userId = splitUrl[2];
-      this.isEditInterface = url.split('/').indexOf('edit') > -1;
-    });
+    this.handleModuleByRouting();
     this.handleInterfaceTitle();
-    this.manageEditEvent();
     this.onDepartmentValueChange();
+    this._breadcrumbService.set('@edit', `${this._userId}: edit`);
+
   }
 
   ngOnDestroy(): void {
+    if (this._userStoreSubscription) this._userStoreSubscription.unsubscribe();
+    if (this._formSubscription) this._formSubscription.unsubscribe();
     if (this._saveSubs) this._saveSubs.unsubscribe();
+    if (this._routingSubscription) this._routingSubscription.unsubscribe();
   }
 
   private setupForm() {
@@ -72,6 +76,38 @@ export class AddEditUserComponent {
 
   private handleInterfaceTitle(): void {
     this.title = this.isEditInterface ? 'Edit event' : 'Create an event'
+  }
+
+
+  private handleModuleByRouting(): void {
+    this._routingSubscription = this._routingService.currentUrl$().subscribe( (url: string) => {
+      this.isEditInterface = url.split('/').indexOf('edit') > -1;
+      this.manageEditUserModule(url)
+    });
+  }
+
+  private manageEditUserModule(url: string): void {
+    if (this.isEditInterface) {
+      const splitUrl = url.split('/');
+      this._userId = JSON.parse(splitUrl[2]);
+
+      // These FNC will be needed to initialize only if we are on Edit page
+      this.initEditedUserInfo();
+    }
+  }
+
+  private initEditedUserInfo(): void {
+    this._userStoreSubscription = this._usersStore.usersStore$()
+      .subscribe( (users: UserModel[]) => {
+        this._users = users;
+        users.forEach( (user: UserModel) => {
+          if (user.id === this._userId) {
+            this.createUser.patchValue(user)
+          }
+        });
+
+    })
+
   }
 
   public addFiles(event: CustomFileEvent | any) {
@@ -93,22 +129,19 @@ export class AddEditUserComponent {
   public onCreate(): void {
     this.isSubmitted = true;
     if (this.createUser.valid) {
-      this.createUser.get('id').setValue(this.generateUuid(1));
-      this.updateLocalStorage(this.createUser.value);
+      this.createUser.get('id').setValue(this.generateId(1));
+      this.createUser.get('progress').setValue(Math.round(Math.random() * 100).toString());
+
+      this._usersStore.dispatchAddedUser(this.createUser.value);
       this._router.navigate(['users']);
     }
   }
 
-  private generateUuid(max: number): string {
+  private generateId(max: number): number {
     const random = JSON.stringify(Math.random() * max);
     const joinString = random.split('.').join('');
-    return joinString.substring(1, 2);
-  }
-
-  private manageEditEvent(): void {
-    if (this.isEditInterface) {
-      this.initEditedEvent()
-    }
+    const take2 = joinString.substring(1, 2);
+    return JSON.parse(take2);
   }
 
   /**
@@ -131,47 +164,8 @@ export class AddEditUserComponent {
     return [...this.jobTitlesOrigin.filter( (occupation: JobTitleModel) => occupation.slug === value)];
   }
 
-  updateLocalStorage(formControl: UserModel) :void {
-    window.localStorage.setItem('users', JSON.stringify(formControl))
-  }
-
-  private initEditedEvent(): void {
-    /*this._eventSubs = this._eventStore.eventByUuid(this._eventUuid, this._loggedUserUuid).subscribe(
-      (editedEvent: EventModel) => {
-        this.createEvent.patchValue({
-          name: editedEvent.name,
-          date: editedEvent.date,
-          description: editedEvent.description
-        })
-      }
-    );*/
-  }
-
   public onEdit() {
-    /*this._saveSubs = this._eventStore.saveEvent(this._eventUuid, this._loggedUserUuid, this.createEvent.value).subscribe(
-      () => {
-        this._router.navigate(['homepage/events']);
-      }
-    )*/
+    this._usersStore.dispatchEditedUser(this.createUser.value);
+    this._router.navigate(['users']);
   }
-
-  /** Builds and returns a new User. */
-  /*public createNewUser(id: number): UserModel {
-    const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-      ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-      '.';
-    const jobTitle = 'Front-end Developer';
-
-    return {
-      id: id,
-      name: name,
-      department: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-      jobTitle: jobTitle,
-      progress: Math.round(Math.random() * 100).toString(),
-      actions: ['delete', 'create', 'profile']
-    };
-  }*/
-
 }
