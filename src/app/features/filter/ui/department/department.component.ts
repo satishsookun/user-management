@@ -11,7 +11,7 @@ import {FormGroup} from '@angular/forms';
         aria-labelledby="departments"
         class="departments"
         formControlName="department">
-        <mat-radio-button class="departments-radio" *ngFor="let department of departments" [value]="department.slug">
+        <mat-radio-button class="departments-radio" *ngFor="let department of departments" [value]="department">
           {{department.name}}
         </mat-radio-button>
       </mat-radio-group>

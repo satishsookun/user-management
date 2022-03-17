@@ -4,6 +4,7 @@ import {DepartmentModel, JobTitleModel} from '../../../models/user.model';
 import {FilterFormService} from '../services/filter-form.service';
 import {FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {FilterCoreService} from '../services/filter-core.service';
 
 @Component({
   selector: 'app-filter',
@@ -21,6 +22,7 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   constructor(
     private _filterFormService: FilterFormService,
+    private _filterCoreService: FilterCoreService,
   ) {}
 
   ngOnInit(): void {
@@ -41,10 +43,11 @@ export class FilterComponent implements OnInit, OnDestroy {
 
   public resetFilter() {
     this._filterFormService.resetFilter();
+    this._filterCoreService.setFilterOpt(this.filterForm.value);
   }
 
   public onSearch() {
-
+    this._filterCoreService.setFilterOpt(this.filterForm.value);
   }
 
   private onDepartmentValueChange(): void {
@@ -56,7 +59,7 @@ export class FilterComponent implements OnInit, OnDestroy {
     )
   }
 
-  private filterOccupationListByDept(value: string): JobTitleModel[] {
-    return [...this.jobTitlesOrigin.filter( (jobTitle: JobTitleModel) => jobTitle.slug === value)];
+  private filterOccupationListByDept(value: {name: string; slug: string}): JobTitleModel[] {
+    return [...this.jobTitlesOrigin.filter( (jobTitle: JobTitleModel) => jobTitle.slug === value.slug)];
   }
 }

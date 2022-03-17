@@ -28,8 +28,8 @@ export class FilterFormService {
 
   public resetFilter(): void {
     this._filterFrom.patchValue({
-      department: '',
-      occupation: ''
+      department: {name: '', slug: ''},
+      occupation: {name: '', slug: ''}
     });
     this._filterFrom$.next(this._filterFrom);
   }

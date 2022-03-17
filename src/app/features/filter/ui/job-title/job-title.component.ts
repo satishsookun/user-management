@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {DepartmentModel, JobTitleModel} from '../../../../models/user.model';
+import {JobTitleModel} from '../../../../models/user.model';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import {FormGroup} from '@angular/forms';
       <mat-form-field appearance="fill">
         <mat-label>Job Title: </mat-label>
         <mat-select formControlName="jobTitle">
-          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.slug">
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle">
             {{jobTitle.name}}
           </mat-option>
         </mat-select>

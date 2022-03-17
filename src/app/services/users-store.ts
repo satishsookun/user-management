@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {filter, Observable} from 'rxjs';
-import {addUserAction, editUserAction} from '../store/users/actions';
+import {addUserAction, deleteUserAction, editUserAction} from '../store/users/actions';
 import {usersSelector} from '../store/users/select';
 import {UserModel} from '../dashboard/users/models/user.model';
 
@@ -22,6 +22,10 @@ export class UsersStore {
 
   public dispatchAddedUser(user: UserModel) {
     this._store.dispatch(addUserAction(user))
+  }
+
+  public dispatchDeleteUser(user: UserModel) {
+    this._store.dispatch(deleteUserAction(user))
   }
 
 }

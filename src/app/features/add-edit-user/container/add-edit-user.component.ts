@@ -53,7 +53,6 @@ export class AddEditUserComponent {
     this.handleInterfaceTitle();
     this.onDepartmentValueChange();
     this._breadcrumbService.set('@edit', `${this._userId}: edit`);
-
   }
 
   ngOnDestroy(): void {
@@ -129,9 +128,8 @@ export class AddEditUserComponent {
   public onCreate(): void {
     this.isSubmitted = true;
     if (this.createUser.valid) {
-      this.createUser.get('id').setValue(this.generateId(1));
+      this.createUser.get('id').setValue(this.generateId(3));
       this.createUser.get('progress').setValue(Math.round(Math.random() * 100).toString());
-
       this._usersStore.dispatchAddedUser(this.createUser.value);
       this._router.navigate(['users']);
     }
@@ -150,7 +148,7 @@ export class AddEditUserComponent {
   private onDepartmentValueChange(): void {
     this._formSubscription = this.createUser.get('department').valueChanges.subscribe(
       (value) => {
-        this.jobTitles = this.filterOccupationListByDept(value);
+        this.jobTitles = this.filterOccupationListByDept(value.slug);
         this.createUser.get('jobTitle').setValue('');
       }
     )

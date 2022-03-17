@@ -9,12 +9,20 @@ export function usersReducer(
 ): UserModel[] {
   switch (action.type) {
     case UsersAction.UsersActionsEnum.addUser:
-      const newAddedState = [action, ...state];
-      return newAddedState;
+      return [action, ...state];
 
     case UsersAction.UsersActionsEnum.editUser:
-      let newState = state.map( (user) => user.id === action.id ? action : user);
-      return newState;
+      let newEditState = state.map( (user) => user.id === action.id ? action : user);
+      return newEditState;
+
+    case UsersAction.UsersActionsEnum.deleteUser:
+      let newDeleteState = [...state];
+      if (state.length < 2) {
+        newDeleteState = [];
+      } else {
+        newDeleteState = newDeleteState.filter( (user) => user.id !== action.id);
+      }
+      return newDeleteState;
 
     default:
       return state;

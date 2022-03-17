@@ -14,6 +14,8 @@ import {StoreModule} from '@ngrx/store';
 import {usersReducer} from '../../store/users/reducers';
 import {UsersStore} from '../../services/users-store';
 import {UserActionsComponent} from './ui/actions/actions.component';
+import {DialogModule} from '../../features/dialog/dialog.module';
+import {FilterCoreService} from '../../features/filter/services/filter-core.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import {UserActionsComponent} from './ui/actions/actions.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    DialogModule,
 
     FilterModule,
 
@@ -42,7 +45,8 @@ import {UserActionsComponent} from './ui/actions/actions.component';
     UsersComponent
   ],
   providers: [
-    UsersStore
+    UsersStore,
+    FilterCoreService
   ]
 })
 export class UsersModule { }
