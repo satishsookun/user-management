@@ -1,0 +1,20 @@
+.users {
+  width: 100%;
+  background-color: $tertiary-color;
+  border-radius: 20px 0 0 0;
+  padding: 30px 50px;
+  display: flex;
+
+  &__table {
+    width: 80%;
+
+    .mat-form-field {
+      width: 25%;
+    }
+  }
+  &__filter {
+    margin-left: 50px;
+    width: 20%;
+  }
+}
+
