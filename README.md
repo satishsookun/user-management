@@ -1,27 +1,81 @@
 # UserManagement
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+Framework:
+- Angular 13
+
+Main Features:
+- Robust folder structure
+- Routing
+- Lazy load module
+- Single Dependency Injection
+- Container and ui approach
+- Reactive Form
+- Form validation
+- Rxjs Observables
+- LocalStorage
+- State Management (Ngrx)
+- Breadcrumb
+- Search and filters on the list
+- Strong Typing
+- BEM approach
+- Scss Variables
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+  Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Folder structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  Folder structure is organised in a way that if in the future the app expand, it will be easy to adapt
 
-## Running end-to-end tests
+## Sass
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  Make used of local and global variables in order to adapt our theme color easily
 
-## Further help
+## Responsiveness
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  The app is only adapted to desktop version as from 1200px as I didn't work on responsiveness due to lack of time
+ 
+## Module
+
+  Easy module loading approach was adapted.
+  Each feature is a module which can be easily plug and play
+  
+## Services
+
+  Root services and module wise services are used to meet the requirement of the project. As we are bootstrapping the users module and user module separately, RXJS Observables(Subject and BehaviourSubject) was used to communication between modules
+
+## Feature UI
+
+  Angular material is used in order to give a good and feel interface to the app and prevent wasting time in styling
+
+## Routing
+- RouteGuard is used to prevent user from accessing Event dashboard if not login
+- If no account was created, user will be redirecting to Create profile route but still have the choice to route to the login page.
+
+## Store
+
+  localStorage
+  State Management (Ngrx)
+  
+## User interaction
+
+ - User has the possibility to add, edit and delete a user.
+ - User can create multiple account and manage each account
+ - User has the possibility to search in the user list.
+ - User also has the possibility to filter users
+
+## Dynamic Job Title list
+  
+  The Job Title list get updated when selecting a Department
+
+## Remaining
+
+- Webpack implementation for a much better management of Input and output sources with the appropriate loaders. This will help to provide a production version bundle also.
+- Can be done if you are interested in evaluating these section also 
+- Redirect to Create user interface when user list is empty
+- Breadcrumb needs a little adjustment for redirection
