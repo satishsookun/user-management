@@ -1,0 +1,11 @@
+.users {
+  .mat-table {
+    width: 100%;
+    font-family: $font-primary-regular;
+
+    .mat-sort-header-content {
+      font-family: $font-primary-bold;
+      color: $primary-color;
+    }
+  }
+}

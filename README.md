@@ -22,6 +22,9 @@ Main Features:
 
 ## Development server
 
+  Copy and paste in your command prompt: git clone https://github.com/satishsookun/user-management-system.git
+  `npm i` (to install all dependencies)
+
   Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
