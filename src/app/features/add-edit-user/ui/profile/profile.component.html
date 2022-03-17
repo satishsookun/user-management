@@ -23,7 +23,7 @@
       <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('department').invalid)}">
         <mat-label>Your Department</mat-label>
         <mat-select formControlName="department">
-          <mat-option *ngFor="let department of departments" [value]="department.slug">
+          <mat-option *ngFor="let department of departments" [value]="department">
             {{department.name}}
           </mat-option>
         </mat-select>
@@ -38,7 +38,7 @@
       <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('jobTitle').invalid)}">
         <mat-label>Your Title</mat-label>
         <mat-select formControlName="jobTitle">
-          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle.slug">
+          <mat-option *ngFor="let jobTitle of jobTitles" [value]="jobTitle">
             {{jobTitle.name}}
           </mat-option>
         </mat-select>

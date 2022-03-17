@@ -9,6 +9,7 @@ import {ResetComponent} from './ui/actions/reset.component';
 import {SearchComponent} from './ui/actions/search.component';
 import {FilterFormService} from './services/filter-form.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FilterCoreService} from './services/filter-core.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FilterComponent
   ],
   providers: [
-    FilterFormService
+    FilterFormService,
+    FilterCoreService
   ]
 })
 export class FilterModule { }

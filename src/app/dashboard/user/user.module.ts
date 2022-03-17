@@ -5,13 +5,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {UserComponent} from './container/user.component';
 import {UserRoutingModule} from './user-routing.module';
-import {AddEditUserComponent} from '../../features/add-edit-user/container/add-edit-user.component';
 import {RouterModule} from '@angular/router';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {RoutingService} from '../../services/routing.service';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {AddEditUserModule} from '../../features/add-edit-user/add-edit-user.module';
+import {UsersStore} from '../../services/users-store';
+import {StoreModule} from '@ngrx/store';
+import {usersReducer} from '../../store/users/reducers';
 
 @NgModule({
   declarations: [
@@ -31,13 +32,15 @@ import {AddEditUserModule} from '../../features/add-edit-user/add-edit-user.modu
     MatSelectModule,
     MatIconModule,
 
+    StoreModule.forFeature('usersFeature', usersReducer),
+
     AddEditUserModule
   ],
   entryComponents: [
     UserComponent,
   ],
   providers: [
-    RoutingService,
+    UsersStore,
   ]
 })
 export class UserModule { }

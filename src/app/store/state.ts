@@ -1,5 +1,5 @@
-import {UsersModel} from '../dashboard/users/store/actions';
+import {UserModel} from '../dashboard/users/models/user.model';
 
 export interface State {
-  usersFeature: UsersModel;
+  usersFeature: UserModel[];
 }
