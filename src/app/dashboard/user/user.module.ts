@@ -9,7 +9,7 @@ import {RouterModule} from '@angular/router';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
-import {AddEditUserModule} from '../../features/add-edit-user/add-edit-user.module';
+import {AddEditUserModule} from '../../shared/add-edit-user/add-edit-user.module';
 import {UsersStore} from '../../services/users-store';
 import {StoreModule} from '@ngrx/store';
 import {usersReducer} from '../../store/users/reducers';

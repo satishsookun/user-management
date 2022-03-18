@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {AddEditUserComponent} from '../../features/add-edit-user/container/add-edit-user.component';
+import {AddEditUserComponent} from '../../shared/add-edit-user/container/add-edit-user.component';
 
 const routesUser: Routes = [
   {
@@ -16,7 +16,7 @@ const routesUser: Routes = [
   {
     path: ':id/edit',
     component: AddEditUserComponent,
-    data: {alias: 'edit'}
+    data: {breadcrumb: 'edit'}
   },
 ];
 

@@ -19,7 +19,7 @@
   <div class="input-group dark-theme">
 
     <!--Department START-->
-    <div class="input-wrapper mr-15">
+    <div class="input-wrapper pr-15">
       <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('department').invalid)}">
         <mat-label>Your Department</mat-label>
         <mat-select formControlName="department">
@@ -34,7 +34,7 @@
     </div>
 
     <!--Title START-->
-    <div class="input-wrapper ml-15">
+    <div class="input-wrapper pl-15">
       <mat-form-field appearance="fill" [ngClass]="{'input-error': (isSubmitted && createUser.get('jobTitle').invalid)}">
         <mat-label>Your Title</mat-label>
         <mat-select formControlName="jobTitle">

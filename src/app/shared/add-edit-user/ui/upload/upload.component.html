@@ -22,8 +22,11 @@
     </div>
   </div>
   <div class="uploaded-img">
-    <mat-icon>person</mat-icon>
-    <div *ngIf="uploadedFileName">Uploaded File: {{uploadedFileName}}</div>
+    <div class="uploaded-img__wrapper">
+      <mat-icon>person</mat-icon>
+      <div *ngIf="uploadedFileName">Uploaded File: {{uploadedFileName}}</div>
+    </div>
+
   </div>
 </div>
 <p class="form-hint-error" *ngIf="!acceptedFormat">

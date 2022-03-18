@@ -6,15 +6,15 @@
   display: flex;
 
   &__table {
-    width: 80%;
+    width: 75%;
 
     .mat-form-field {
-      width: 25%;
+      width: 50%;
     }
   }
   &__filter {
     margin-left: 50px;
-    width: 20%;
+    width: 25%;
   }
 }
 

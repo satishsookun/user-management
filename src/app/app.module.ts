@@ -6,9 +6,9 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BreadcrumbModule, BreadcrumbService} from 'xng-breadcrumb';
 
-import {HeaderModule} from './features/header/header.module';
-import {LogoModule} from './features/logo/logo.module';
-import {NavModule} from './features/nav/nav.module';
+import {HeaderModule} from './shared/header/header.module';
+import {LogoModule} from './shared/logo/logo.module';
+import {NavModule} from './shared/nav/nav.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';

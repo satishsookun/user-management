@@ -1,0 +1,21 @@
+$paddings: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50; // insert value to create margin-[top, right, bottom, left] HERE
+
+@each $padding in $paddings {
+  .p-#{$padding} {
+    padding: #{$padding}px !important;
+  }
+  .pt-#{$padding} {
+    padding-top: #{$padding}px !important;
+  }
+  .pb-#{$padding} {
+    padding-bottom: #{$padding}px !important;
+  }
+  .pl-#{$padding} {
+    padding-left: #{$padding}px !important;
+  }
+  .pr-#{$padding} {
+    padding-right: #{$padding}px !important;
+  }
+}
+
+/*Output will be: Ex mt-5, mr-5, ml-5, mb-5*/

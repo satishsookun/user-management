@@ -1,5 +1,12 @@
 .logo {
   padding: 30px 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+    &__wrapper {
+      width: fit-content;
+    }
 
     &__title {
       font-size: 50px;

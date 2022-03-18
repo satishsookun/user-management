@@ -13,14 +13,14 @@ import {MatTableDataSource} from '@angular/material/table';
 import {USER} from '../constants/constants';
 import {UserModel, UserSimpleModel} from '../models/user.model';
 
-import { BreadcrumbService } from 'xng-breadcrumb';
+import {BreadcrumbService} from 'xng-breadcrumb';
 import {UsersStore} from '../../../services/users-store';
 import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
-import {ConfirmDialog} from '../../../features/dialog/container/dialog.component';
+import {ConfirmDialog} from '../../../shared/dialog/container/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {DialogService} from '../../../features/dialog/services/dialog.service';
-import {FilterCoreService} from '../../../features/filter/services/filter-core.service';
+import {DialogService} from '../../../shared/dialog/services/dialog.service';
+import {FilterCoreService} from '../../../shared/filter/services/filter-core.service';
 import {filter} from 'rxjs/operators';
 
 @Component({
@@ -32,9 +32,7 @@ import {filter} from 'rxjs/operators';
 export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public displayedColumns: string[];
-  //public dataSource: MatTableDataSource<UserModel>;
   public dataSource: MatTableDataSource<UserSimpleModel>;
-  // public userList: UserModel[] = [];
   public userList: UserSimpleModel[] = [];
 
   private _userStoreSubscription: Subscription;
@@ -51,7 +49,6 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
     private _dialog: MatDialog,
     private _dialogService: DialogService,
     private _filterCoreService: FilterCoreService,
-    private _changeRef: ChangeDetectorRef,
   ) {
     this.dataSource = new MatTableDataSource(this.userList);
     this.paginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
@@ -134,8 +131,8 @@ export class UsersComponent implements OnInit, AfterViewInit, OnDestroy {
         filter((filter) => filter !== undefined)
       )
       .subscribe( (filterOpt) => {
-        this.dataSource.filter = filterOpt.department.name.trim().toLowerCase();
-        this.dataSource.filter = filterOpt.jobTitle.name.trim().toLowerCase();
+        this.dataSource.filter = filterOpt.department?.name?.trim().toLowerCase();
+        this.dataSource.filter = filterOpt.jobTitle?.name?.trim().toLowerCase();
         if (this.dataSource.paginator) {
           this.dataSource.paginator.firstPage();
         }

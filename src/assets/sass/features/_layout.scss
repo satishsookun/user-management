@@ -5,8 +5,22 @@ body {
   display: flex;
 }
 aside {
-  width: 300px;
+  width: 20%;
+  @media only screen and (max-width: 1400px) {
+    width: 15%;
+  }
+  @media only screen and (max-width: 1200px) {
+    width: 10%;
+  }
+
 }
 section {
-  width: 100%;
+  width: 80%;
+
+  @media only screen and (max-width: 1400px) {
+    width: 85%;
+  }
+  @media only screen and (max-width: 1200px) {
+    width: 90%;
+  }
 }

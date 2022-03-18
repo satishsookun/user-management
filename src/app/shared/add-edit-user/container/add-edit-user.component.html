@@ -4,7 +4,7 @@
     <form
       [formGroup]="createUser">
 
-      <div class="user__section mr-25">
+      <div class="user__section ">
         <app-user-profile
           [createUser]="createUser"
           [isSubmitted]="isSubmitted"
@@ -12,7 +12,7 @@
           [jobTitles]="jobTitles"></app-user-profile>
       </div>
 
-      <div class="user__section dark-theme ml-25 mr-50">
+      <div class="user__section dark-theme">
         <app-user-upload
           [createUser]="createUser"
           [isSubmitted]="isSubmitted"

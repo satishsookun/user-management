@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {DEPARTMENTS, JOB_TITLES} from '../../../contants/constants';
 import {DepartmentModel, JobTitleModel} from '../../../models/user.model';
 import {FilterFormService} from '../services/filter-form.service';
 import {FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {FilterCoreService} from '../services/filter-core.service';
+import {DEPARTMENTS, JOB_TITLES} from '../../../constants/constants';
 
 @Component({
   selector: 'app-filter',

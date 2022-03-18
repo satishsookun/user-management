@@ -3,16 +3,19 @@
     color: $primary-color;
   }
   &__content {
+    padding-right: 50px;
     form {
       display: flex;
       justify-content: space-between;
     }
   }
   &__section {
-    width: 50%;
+    width: 48%;
     padding: 50px;
     background-color: $white-color;
     border-radius: 20px;
+
+    &:nth-child(1) {}
 
     &.dark-theme {
       background-color: $secondary-color;
@@ -21,7 +24,7 @@
   &__cta {
     display: flex;
     justify-content: right;
-    padding: 50px;
+    padding: 50px 0 50px 50px;
   }
 }
 

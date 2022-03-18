@@ -1,14 +1,12 @@
 import {ChangeDetectorRef, Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {filter, map, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {RoutingService} from '../../../services/routing.service';
 import {CustomFileEvent, DepartmentModel, JobTitleModel} from '../../../models/user.model';
-import {DEPARTMENTS, JOB_TITLES} from '../../../contants/constants';
 import {UserModel} from '../../../dashboard/users/models/user.model';
 import {UsersStore} from '../../../services/users-store';
-import {filter, map} from 'rxjs';
-import {BreadcrumbService} from 'xng-breadcrumb';
+import {DEPARTMENTS, JOB_TITLES} from '../../../constants/constants';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -28,7 +26,6 @@ export class AddEditUserComponent {
   public departments: DepartmentModel[] = DEPARTMENTS;
   public jobTitles: JobTitleModel[] = JOB_TITLES;
 
-  private _users: UserModel[];
   private _userId: number;
   private _saveSubs: Subscription;
   private _formSubscription: Subscription;
@@ -43,16 +40,13 @@ export class AddEditUserComponent {
     private _routingService: RoutingService,
     private _changeRef: ChangeDetectorRef,
     private _usersStore: UsersStore,
-    private _breadcrumbService: BreadcrumbService,
   ) {}
 
   ngOnInit(): void {
-    this._users = [];
     this.setupForm();
     this.handleModuleByRouting();
     this.handleInterfaceTitle();
     this.onDepartmentValueChange();
-    this._breadcrumbService.set('@edit', `${this._userId}: edit`);
   }
 
   ngOnDestroy(): void {
@@ -98,7 +92,6 @@ export class AddEditUserComponent {
   private initEditedUserInfo(): void {
     this._userStoreSubscription = this._usersStore.usersStore$()
       .subscribe( (users: UserModel[]) => {
-        this._users = users;
         users.forEach( (user: UserModel) => {
           if (user.id === this._userId) {
             this.createUser.patchValue(user)

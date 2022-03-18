@@ -9,13 +9,13 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
-import {FilterModule} from '../../features/filter/filter.module';
+import {FilterModule} from '../../shared/filter/filter.module';
 import {StoreModule} from '@ngrx/store';
 import {usersReducer} from '../../store/users/reducers';
 import {UsersStore} from '../../services/users-store';
 import {UserActionsComponent} from './ui/actions/actions.component';
-import {DialogModule} from '../../features/dialog/dialog.module';
-import {FilterCoreService} from '../../features/filter/services/filter-core.service';
+import {DialogModule} from '../../shared/dialog/dialog.module';
+import {FilterCoreService} from '../../shared/filter/services/filter-core.service';
 
 @NgModule({
   declarations: [
